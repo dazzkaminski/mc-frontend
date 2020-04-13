@@ -1,6 +1,7 @@
 package com.medicalcentre.service;
 import com.medicalcentre.model.Prescription;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,9 @@ public class PrescriptionService {
 
     private RestTemplate restTemplate;
 
+    @Value("${mc.prescription.endpoint}")
+    private String url;
+    
     public PrescriptionService(@Autowired RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -22,7 +26,7 @@ public class PrescriptionService {
         try {
 
             Prescription[] prescriptions =
-                    restTemplate.getForObject("http://mc-prescription-service/prescriptions", Prescription[].class);
+                    restTemplate.getForObject(url, Prescription[].class);
 
             return Arrays.asList(Optional.ofNullable(prescriptions).orElse(new Prescription[0]));
 
@@ -32,14 +36,14 @@ public class PrescriptionService {
     }
 
     public Prescription getPrescription(int id) {
-        return restTemplate.getForObject("http://mc-prescription-service/prescriptions/" + id, Prescription.class);
+        return restTemplate.getForObject(url + id, Prescription.class);
     }
 
     public void save(Prescription prescription) {
-        restTemplate.postForObject("http://mc-prescription-service/prescriptions", prescription, Prescription.class);
+        restTemplate.postForObject(url, prescription, Prescription.class);
     }
 
     public void delete(Prescription prescription) {
-        restTemplate.delete("http://mc-prescription-service/prescriptions/" + prescription.getId());
+        restTemplate.delete(url + prescription.getId());
     }
 }

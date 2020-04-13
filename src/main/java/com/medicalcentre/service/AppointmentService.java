@@ -1,6 +1,7 @@
 package com.medicalcentre.service;
 import com.medicalcentre.model.Appointment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,9 @@ public class AppointmentService {
 
     private RestTemplate restTemplate;
 
+    @Value("${mc.appointment.endpoint}")
+    private String url;
+    
     public AppointmentService(@Autowired RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -22,7 +26,7 @@ public class AppointmentService {
         try {
 
             Appointment[] appointments =
-                    restTemplate.getForObject("http://mc-appointment-service/appointments", Appointment[].class);
+                    restTemplate.getForObject(url, Appointment[].class);
 
             return Arrays.asList(Optional.ofNullable(appointments).orElse(new Appointment[0]));
 
@@ -32,15 +36,15 @@ public class AppointmentService {
     }
 
     public Appointment getAppointment(int id) {
-        return restTemplate.getForObject("http://mc-appointment-service/appointments/" + id, Appointment.class);
+        return restTemplate.getForObject(url + "/" + id, Appointment.class);
     }
 
     public void save(Appointment doctor) {
-        restTemplate.postForObject("http://mc-appointment-service/appointments", doctor, Appointment.class);
+        restTemplate.postForObject(url, doctor, Appointment.class);
     }
 
     public void delete(Appointment doctor) {
-        restTemplate.delete("http://mc-appointment-service/appointments/" + doctor.getId());
+        restTemplate.delete(url + "/" + doctor.getId());
     }
 }
 

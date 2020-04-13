@@ -19,4 +19,14 @@ public class Appointment {
     private Integer doctorId;
     private Patient patient;
     private Doctor doctor;
+
+    public Appointment(Integer id, LocalDate date, LocalTime time,
+                       String status, Integer patientId, Integer doctorId) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+    }
 }
