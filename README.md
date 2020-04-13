@@ -1,25 +1,26 @@
-# Project Base for Vaadin and Spring Boot
+# Example of front-end for Medical Centre CMS
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+## Features:
+* You can see all of the appointments on the dashboard for the specified day
+* Sends confirmation email after adding a new patient
+* Sends a reminder email a day before the appointment
 
-The best way to create your own project based on this starter is [start.vaadin.com](https://start.vaadin.com/) - you can get only the necessary parts and choose the package naming you want to use.
+## Build with
+* Vaadin 14
+* Spring Boot
+* Maven
 
-## Running the Application
+You can go to https://mc-front-end-v2.herokuapp.com/ too see the front-end. Please make sure to wake up the services first by clicking on each link below as the app is deployed on Heroku and services go to sleep after 30 min if not used.
 
-Import the project to the IDE of your choosing as a Maven project.
+### Microservices on Eureka server:
 
-Run the application using `mvn spring-boot:run` or by running the `Application` class directly from your IDE.
+* [Patient Service](https://mc-patient-service.herokuapp.com/)
+* [Doctor Service](https://mc-doctor-service.herokuapp.com/)
+* [Appointment Service](https://mc-appointment-service.herokuapp.com/)
+* [Prescription Service](https://mc-prescription-service.herokuapp.com/)
+* [Prescription Service](https://mc-mail-service.herokuapp.com/)
+* [Eureka Discovery Server](https://mc-discovery-server.herokuapp.com/)
 
-Open http://localhost:8080/ in your browser.
+Source code for back-end: https://github.com/dazzkaminski/mc-backend
 
-If you want to run the application locally in the production mode, run `mvn spring-boot:run -Pproduction`.
 
-To run Integration Tests, execute `mvn verify -Pintegration-tests`.
-
-## More Information
-
-- [Vaadin Flow](https://vaadin.com/flow) documentation
-- [Using Vaadin and Spring](https://vaadin.com/docs/v14/flow/spring/tutorial-spring-basic.html) article
-
-# mc-frontend
