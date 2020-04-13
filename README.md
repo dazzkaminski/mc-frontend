@@ -19,7 +19,7 @@ You can go to https://mc-front-end-v2.herokuapp.com/ too see the front-end. Plea
 * [Appointment Service](https://mc-appointment-service.herokuapp.com/)
 * [Prescription Service](https://mc-prescription-service.herokuapp.com/)
 * [Prescription Service](https://mc-mail-service.herokuapp.com/)
-* [Eureka Discovery Server](https://mc-discovery-server.herokuapp.com/)
+* [Eureka Discovery Service](https://mc-discovery-service.herokuapp.com/)
 
 Source code for back-end: https://github.com/dazzkaminski/mc-backend
 
